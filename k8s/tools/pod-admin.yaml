@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox-pod
+spec:
+  containers:
+  - name: busybox
+    image: busybox
+    args:
+    - cat
+    stdin: true
+    tty: true
+    volumeMounts:
+    - name: cdn-storage
+      mountPath: "/mnt/cdn-claim"
+  volumes:
+  - name: cdn-storage
+    persistentVolumeClaim:
+      claimName: cdn-claim
+
